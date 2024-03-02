@@ -1,0 +1,8 @@
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  background-color: blue;
+  user-select: none;
+}

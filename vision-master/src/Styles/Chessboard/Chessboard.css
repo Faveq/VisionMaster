@@ -1,0 +1,13 @@
+.chessboard {
+  aspect-ratio: 1/1;
+  height: 80vh;
+  max-height: 80vh;
+  min-height: 150px;
+  height: min-content;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0%;
+  padding: 0%;
+  gap: 0px;
+  user-select: none;
+}

@@ -1,8 +1,23 @@
-.main-site-container{
-    height: 100vh;
-    display: flex;
-    background-color: #2e2e2e;
+.main-site-container {
+  height: 100vh;
+  display: flex;
 }
-.chessboard{
-    
+.chessboard-container {
+  width: 50vw; /*Zmienic na 50vw*/
+  min-width: max-content;
+}
+.right-panel-container{
+    width: 80vw;
+}
+
+@media only screen and (max-width: 780px) {
+  .chessboard-container {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 610px) {
+  .chessboard-container {
+    width: 100vw;
+  }
 }
