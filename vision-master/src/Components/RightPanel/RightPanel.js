@@ -5,15 +5,14 @@ import Time from "./Time";
 import Field from "./Field";
 import GameTypeSettings from "./GameTypeSettings";
 
-const RightPanel = (props) => {
-  const  {randomizedSquare, points } = props
+const RightPanel = () => {
 
   return <div className="right-panel">
-    <Score points={points}/>
+    <Score/>
     <GameTypeSettings/>
     <Time/>
 
-    <Field randomizedSquare={randomizedSquare}/>
+    <Field/>
   </div>;
 };
 export default RightPanel;

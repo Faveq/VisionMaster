@@ -1,11 +1,9 @@
 import React from "react";
 import "../../Styles/RightPanel/GameTypeSettings.css";
-import GameController from "../GameController";
 import { useDispatch, useSelector } from "react-redux";
-import { ChangeGameType } from "../../Components/Redux/GameSlice";
+import { changeGameType } from "../../Components/Redux/GameSlice";
 
-const GameTypeSettings = (props) => {
-  const { setGameType, gameTypes } = GameController();
+const GameTypeSettings = () => {
   const gameType = useSelector((state) => state.game.gameType);
   const dispatch = useDispatch();
 
@@ -45,7 +43,7 @@ const GameTypeSettings = (props) => {
                 <h3>Endless</h3>
                 <button
                   type="button"
-                  onClick={() => dispatch(ChangeGameType("endless"))}
+                  onClick={() => dispatch(changeGameType("endless"))}
                   className={
                     "btn m-1" +
                     (gameType === "endless"
@@ -62,7 +60,7 @@ const GameTypeSettings = (props) => {
                 <h3>Time limit</h3>
                 <button
                   type="button"
-                  onClick={() => dispatch(ChangeGameType("oneMinute"))}
+                  onClick={() => dispatch(changeGameType("oneMinute"))}
                   className={
                     "btn m-1" +
                     (gameType === 'oneMinute' ? " btn-primary" : " btn-outline-primary")
@@ -74,7 +72,7 @@ const GameTypeSettings = (props) => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => dispatch(ChangeGameType("threeMinutes"))}
+                  onClick={() => dispatch(changeGameType("threeMinutes"))}
                   className={
                     "btn m-1" +
                     (gameType === "threeMinutes" ? " btn-primary" : " btn-outline-primary")
@@ -86,7 +84,7 @@ const GameTypeSettings = (props) => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => dispatch(ChangeGameType("fiveMinutes"))}
+                  onClick={() => dispatch(changeGameType("fiveMinutes"))}
                   className={
                     "btn m-1" +
                     (gameType === 'fiveMinutes' ? " btn-primary" : " btn-outline-primary")
@@ -101,7 +99,7 @@ const GameTypeSettings = (props) => {
                 <h3>Practice</h3>
                 <button
                   type="button"
-                  onClick={() => dispatch(ChangeGameType("practice"))}
+                  onClick={() => dispatch(changeGameType("practice"))}
                   className={
                     "btn m-1" +
                     (gameType === "practice"

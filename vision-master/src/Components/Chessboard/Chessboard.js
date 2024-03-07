@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Square from "./Square.js";
 import "../../Styles/Chessboard/Chessboard.css";
+import { useSelector } from "react-redux";
 
-const Chessboard = (props) => {
-  const { randomizedSquare, handleClick,gameType } = props;
-
-
-  const passClick = (isCorrectClick) => {
-    console.log(gameType)
-    handleClick(isCorrectClick);
-  };
+const Chessboard = () => {
+  const game = useSelector(state => state.game)
+  const randomizedSquare = game.randomizedSquare
+  const gameType = game.gameType 
 
   const generateSquares = () => {
     let colorHandler = 0;
@@ -28,7 +25,6 @@ const Chessboard = (props) => {
             isRandomizedSquare={isRandomizedSquare}
             column={String.fromCharCode(97 + row)}
             row={8 - column}
-            passClick={passClick}
           />
         );
         colorHandler++;

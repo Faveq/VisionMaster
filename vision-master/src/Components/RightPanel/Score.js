@@ -1,7 +1,9 @@
 import React from "react";
-import "../../Styles/RightPanel/Score.css"
+import "../../Styles/RightPanel/Score.css";
+import { useSelector } from "react-redux";
 
-const Score = (props) => {
-  return <h1 className="score-h1">{props.points}</h1>
+const Score = () => {
+  const points = useSelector((state) => state.game.points);
+  return <h1 className="score-h1">{points}</h1>;
 };
 export default Score;
