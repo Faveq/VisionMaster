@@ -22,6 +22,7 @@ export const gameSlice = createSlice({
   reducers: {
     changeGameType: (state, action) => {
       state.gameType = gameTypes[action.payload];
+      gameSlice.caseReducers.resetGame(state)
     },
 
     addPoint: (state) => {
@@ -31,6 +32,7 @@ export const gameSlice = createSlice({
     resetGame: (state) => {
       state.points = 0;
       state.availableMistakes = 3;
+      gameSlice.caseReducers.randomizeNewSquare(state)
     },
 
     removeOneMistake: (state) => {
