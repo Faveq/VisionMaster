@@ -1,9 +1,10 @@
-import MainSite from './Sites/MainSite';
-import "./Styles/App.css"
+import MainSite from "./Sites/MainSite";
+
+import "./Styles/App.css";
 function App() {
   return (
     <div className="App">
-      <MainSite/>
+      <MainSite />
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import React from "react";
 import "../../Styles/RightPanel/GameTypeSettings.css";
 import GameController from "../GameController";
-const GameTypeSettings = (props) => {
-    const {gameType, setGameType, gameTypes} = GameController()
+import { useDispatch, useSelector } from "react-redux";
+import { ChangeGameType } from "../../Components/Redux/GameSlice";
 
-  const handleClick = (event)=>{
-  }
+const GameTypeSettings = (props) => {
+  const { setGameType, gameTypes } = GameController();
+  const gameType = useSelector((state) => state.game.gameType);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -39,20 +41,79 @@ const GameTypeSettings = (props) => {
               ></button>
             </div>
             <div className="modal-body">
-                <div className="m-1">
-                    <h3>Endless</h3>
-                    <button type="button" onClick={(event)=>setGameType(gameTypes[event.target.name])} className={"btn m-1" + (gameType ===  "endless"? " btn-primary" : " btn-outline-primary")} name="endless" data-bs-dismiss="modal">Select</button>
-                </div>
-                <div className="m-1">
-                    <h3>Time limit</h3>
-                    <button type="button" onClick={(event)=>setGameType(gameTypes[event.target.name][0])} className={"btn m-1" + (gameType ===  60? " btn-primary" : " btn-outline-primary")} name="timeLimit" data-bs-dismiss="modal">1 min</button>
-                    <button type="button" onClick={(event)=>setGameType(gameTypes[event.target.name][1])} className={"btn m-1" + (gameType ===  180? " btn-primary" : " btn-outline-primary")} name="timeLimit" data-bs-dismiss="modal">3 min</button>
-                    <button type="button" onClick={(event)=>setGameType(gameTypes[event.target.name][2])} className={"btn m-1" + (gameType ===  300? " btn-primary" : " btn-outline-primary")} name="timeLimit" data-bs-dismiss="modal">5 min</button>
-                </div>
-                <div className="m-1">
-                    <h3>Practice</h3>
-                    <button type="button" onClick={(event)=>setGameType(gameTypes[event.target.name])} className={"btn m-1" + (gameType ===  "practice"? " btn-primary" : " btn-outline-primary")} name="practice" data-bs-dismiss="modal">Select</button>
-                </div>
+              <div className="m-1">
+                <h3>Endless</h3>
+                <button
+                  type="button"
+                  onClick={() => dispatch(ChangeGameType("endless"))}
+                  className={
+                    "btn m-1" +
+                    (gameType === "endless"
+                      ? " btn-primary"
+                      : " btn-outline-primary")
+                  }
+                  name="endless"
+                  data-bs-dismiss="modal"
+                >
+                  Select
+                </button>
+              </div>
+              <div className="m-1">
+                <h3>Time limit</h3>
+                <button
+                  type="button"
+                  onClick={() => dispatch(ChangeGameType("oneMinute"))}
+                  className={
+                    "btn m-1" +
+                    (gameType === 'oneMinute' ? " btn-primary" : " btn-outline-primary")
+                  }
+                  name="timeLimit"
+                  data-bs-dismiss="modal"
+                >
+                  1 min
+                </button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(ChangeGameType("threeMinutes"))}
+                  className={
+                    "btn m-1" +
+                    (gameType === "threeMinutes" ? " btn-primary" : " btn-outline-primary")
+                  }
+                  name="timeLimit"
+                  data-bs-dismiss="modal"
+                >
+                  3 min
+                </button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(ChangeGameType("fiveMinutes"))}
+                  className={
+                    "btn m-1" +
+                    (gameType === 'fiveMinutes' ? " btn-primary" : " btn-outline-primary")
+                  }
+                  name="timeLimit"
+                  data-bs-dismiss="modal"
+                >
+                  5 min
+                </button>
+              </div>
+              <div className="m-1">
+                <h3>Practice</h3>
+                <button
+                  type="button"
+                  onClick={() => dispatch(ChangeGameType("practice"))}
+                  className={
+                    "btn m-1" +
+                    (gameType === "practice"
+                      ? " btn-primary"
+                      : " btn-outline-primary")
+                  }
+                  name="practice"
+                  data-bs-dismiss="modal"
+                >
+                  Select
+                </button>
+              </div>
             </div>
           </div>
         </div>

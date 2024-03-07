@@ -6,12 +6,13 @@ import Field from "./Field";
 import GameTypeSettings from "./GameTypeSettings";
 
 const RightPanel = (props) => {
-  const  { gameType, randomizedSquare, points } = props
+  const  {randomizedSquare, points } = props
 
   return <div className="right-panel">
     <Score points={points}/>
-    <Time/>
     <GameTypeSettings/>
+    <Time/>
+
     <Field randomizedSquare={randomizedSquare}/>
   </div>;
 };

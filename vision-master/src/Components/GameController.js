@@ -1,30 +1,42 @@
 import { useState, useEffect } from "react";
 import Stopwatch from "./Stopwatch";
 import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { ChangeGameType } from "./Redux/GameSlice";
 
 const GameController = () => {
   const [points, setPoints] = useState(0);
   const [availableMistakes, setAvailableMistakes] = useState(3);
   const [randomizedSquare, setRandomizedSquare] = useState("");
   const { elapsedTime, isRunning, startStop, resetTime } = Stopwatch();
-  const [gameType, setGameType] = useState();
+
+  const gameType = useSelector(state => state.game.gameType)
+  const dispatch = useDispatch()
+  
+  
+  const updateGameType = (passedGameType) =>{
+    dispatch(ChangeGameType(passedGameType))
+  }
+
   const [cookies, setCookie] = useCookies([
     "gameTypeCookie",
-  ]); /*game type: 0 - endless; 1 - time limit (60, 180, 300 - time limits in seconds); 2 - practice with squares lightened ; values in array represents time limits ; 0,1,2 are array indexes*/
+  ]); 
   const gameTypes = {
     endless: "endless",
-    timeLimit: [60, 180, 300],
+    oneMinute: "oneMinute",
+    threeMinutes: "threeMinutes",
+    fiveMinutes:  "fiveMinutes",
     practice: "practice"
-  }
+}
 
   useEffect(() => {
     randomizeNewSquare();
     if (cookies.gameTypeCookie === undefined) {
       setCookie("gameTypeCookie", gameTypes["practice"]);
-      setGameType(gameTypes["practice"]);
+      updateGameType("practice");
     } else {
       setCookie("gameTypeCookie", gameTypes["practice"]);
-      setGameType(cookies.gameTypeCookie);
+      updateGameType(cookies.gameTypeCookie);
     }
   }, []);
 
@@ -74,7 +86,7 @@ const GameController = () => {
     availableMistakes,
     startStop,
     gameType,
-    setGameType,
+    updateGameType,
     gameTypes
   };
 };
