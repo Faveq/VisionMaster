@@ -1,0 +1,15 @@
+.mistakes-number-div{
+    margin-top: 5px;
+}
+.mistake-cross{
+    aspect-ratio: 1/1;
+    width: 2vw;
+    min-width: 24px;
+    max-width: 40px;
+    filter: grayscale(100%);
+    transition: all .2s linear;
+    user-select: none;
+}
+.used{
+    filter: none;
+}

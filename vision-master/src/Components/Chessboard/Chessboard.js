@@ -3,9 +3,11 @@ import Square from "./Square.js";
 import "../../Styles/Chessboard/Chessboard.css";
 
 const Chessboard = (props) => {
-  const { randomizedSquare, gameType, handleClick } = props;
+  const { randomizedSquare, handleClick,gameType } = props;
+
 
   const passClick = (isCorrectClick) => {
+    console.log(gameType)
     handleClick(isCorrectClick);
   };
 
@@ -21,7 +23,7 @@ const Chessboard = (props) => {
             key={column + "" + row}
             className={
               (colorHandler % 2 !== 0 ? "white-square" : "black-square") +
-              (isRandomizedSquare && gameType === 2 ? " randomized-square" : "")
+              (isRandomizedSquare && gameType === "practice" ? " randomized-square" : "")
             }
             isRandomizedSquare={isRandomizedSquare}
             column={String.fromCharCode(97 + row)}

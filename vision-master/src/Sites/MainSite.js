@@ -1,49 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
+
 import "../Styles/MainSite.css";
 import Chessboard from "../Components/Chessboard/Chessboard.js";
 import RightPanel from "../Components/RightPanel/RightPanel.js";
 import GameController from "../Components/GameController.js";
+import AvailableMistakes from "../Components/Chessboard/AvailableMistakes.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const MainSite = () => {
-  const [cookies, setCookie] = useCookies([
-    "gameTypeCookie",
-  ]); /*game type: 0 - endless; 1 - time limit; 2 - practice with squares lightened*/
-  const [gameType, setGameType] = useState();
-  const { randomizeNewSquare, randomizedSquare, handleCorrectClick,restartGame, points } = GameController();
+  const [isFirstClick, setIsFirstClick] = useState(true);
+  const {
+    randomizeNewSquare,
+    randomizedSquare,
+    handleCorrectClick,
+    handleWrongClick,
+    points,
+    availableMistakes,
+    startStop,
+    gameType
+  } = GameController();
 
-  useEffect(() => {
-    randomizeNewSquare();
-    if (cookies.gameTypeCookie === undefined) {
-      setCookie("gameTypeCookie", 2);
-      setGameType(0);
+ 
+
+  const handleClick = (isCorrectClick) => {
+    console.log(gameType)
+    if (isFirstClick) {
+      startStop()
+    }
+    if (isCorrectClick) {
+      handleCorrectClick();
     } else {
-      setCookie("gameTypeCookie", 2);
-      setGameType(cookies.gameTypeCookie);
-    }
-  }, []);
-
-
-
-  const handleClick = (isCorrectClick) =>{
-    if(isCorrectClick)
-    {
-      handleCorrectClick()
-    }else{
-      if(gameType !== 2)
-      {
+      if (gameType !== "practice") {
       }
-      restartGame() /*move up */
+      handleWrongClick(); /*move up */
     }
-  }
+  };
 
   return (
     <div className="main-site-container">
       <div className="chessboard-container">
-        <Chessboard handleClick={handleClick} gameType={gameType} randomizedSquare={randomizedSquare} />
+        <Chessboard
+          handleClick={handleClick}
+          gameType={gameType}
+          randomizedSquare={randomizedSquare}
+        />
+        <AvailableMistakes availableMistakes={availableMistakes} />
       </div>
       <div className="right-panel-container">
-        <RightPanel gameType={gameType} points={points} randomizedSquare={randomizedSquare} />
+        <RightPanel
+          gameType={gameType}
+          points={points}
+          randomizedSquare={randomizedSquare}
+        />
       </div>
     </div>
   );
