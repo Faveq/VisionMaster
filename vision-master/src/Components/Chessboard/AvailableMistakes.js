@@ -3,12 +3,12 @@ import "../../Styles/Chessboard/AvailableMistakes.css";
 import { useSelector } from "react-redux";
 
 const AvailableMistakes = () => {
-  const availableMistakes = useSelector(
-    (state) => state.game.availableMistakes
-  );
+  const game = useSelector(state => state.game);
+  const gameType = game.gameType
+  const availableMistakes = game.availableMistakes
 
   return (
-    <div className="mistakes-number-div">
+    <div className={gameType === 'endless' || gameType === 'practice' ? "hide" : "mistakes-number-div"}>
       <img
         src="Images/mistake-cross.png"
         className={(availableMistakes < 3 ? "used" : "") + " mistake-cross"}

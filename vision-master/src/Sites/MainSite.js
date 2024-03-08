@@ -6,9 +6,10 @@ import RightPanel from "../Components/RightPanel/RightPanel.js";
 import GameController from "../Components/GameController.js";
 import AvailableMistakes from "../Components/Chessboard/AvailableMistakes.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSelector } from "react-redux";
+import GameResult from "../Components/GameResults.js";
 
 const MainSite = () => {
+  const gamectrl = GameController()
   return (
     <div className="main-site-container">
       <div className="chessboard-container">
@@ -20,6 +21,7 @@ const MainSite = () => {
         <RightPanel
         />
       </div>
+      <GameResult/>
     </div>
   );
 };

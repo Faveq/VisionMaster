@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
-import Stopwatch from "./Stopwatch";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { addPoint, changeGameType, removeOneMistake, resetGame } from "./Redux/GameSlice";
+import { addPoint, changeGameType, removeOneMistake, resetGame, tick, updateHighScore } from "./Redux/GameSlice";
 
 const GameController = () => {
-  const [randomizedSquare, setRandomizedSquare] = useState("");
-  const { elapsedTime, isRunning, startStop, resetTime } = Stopwatch();
   const game = useSelector(state => state.game)
   const gameType = game.gameType
+  const isRunning = game.isRunning
+  const isGameFinished = game.isGameFinished
   const availableMistakes = game.availableMistakes
+  const score = game.points
   const dispatch = useDispatch()
   
-  
+
   const updateGameType = (passedGameType) =>{
     dispatch(changeGameType(passedGameType))
   }
 
   const [cookies, setCookie] = useCookies([
-    "gameTypeCookie",
+    "gameTypeCookie","highScoreCookie"
   ]); 
   const gameTypes = {
     endless: "endless",
@@ -33,25 +33,37 @@ const GameController = () => {
       setCookie("gameTypeCookie", gameTypes["practice"]);
       updateGameType("practice");
     } else {
-      setCookie("gameTypeCookie", gameTypes["practice"]);
       updateGameType(cookies.gameTypeCookie);
+    }
+    if (cookies.highScoreCookie === undefined) {
+      setCookie("highScoreCookie", 0)
     }
   }, []);
 
   useEffect(() => {
-    console.log(gameType)
+    if (score > cookies.highScoreCookie) {
+      setCookie("highScoreCookie", score)
+      dispatch(updateHighScore(score))
+    }
+  }, [isGameFinished]);
+
+  useEffect(() => {
+    setCookie("gameTypeCookie", gameType)
+    
   }, [gameType]);
 
-  const increasePoints = () => {
-    dispatch(addPoint())
-  };
+  useEffect(() => {
+    let interval;
 
-  const startGame = () => {};
+    if (isRunning) {
+      interval = setInterval(() => {
+        dispatch(tick())
+      }, 1000);
+    }
 
- 
-
-  return {
-    startStop,
-  };
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isRunning]);
 };
 export default GameController;

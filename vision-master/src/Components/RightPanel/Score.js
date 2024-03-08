@@ -3,7 +3,10 @@ import "../../Styles/RightPanel/Score.css";
 import { useSelector } from "react-redux";
 
 const Score = () => {
-  const points = useSelector((state) => state.game.points);
-  return <h1 className="score-h1">{points}</h1>;
+  const game = useSelector((state) => state.game);
+  const points = game.points
+  const gameType = game.gameType
+
+  return <h1 className={gameType === 'practice' ? "score-h1 hide" : "score-h1"}>{points}</h1>;
 };
 export default Score;

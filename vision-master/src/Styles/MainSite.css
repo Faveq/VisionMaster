@@ -3,13 +3,15 @@
   display: flex;
 }
 .chessboard-container {
-  width: 50vw; /*Zmienic na 50vw*/
+  width: 50vw;
   min-width: max-content;
 }
 .right-panel-container{
     width: 80vw;
 }
-
+.hide{
+  visibility: hidden;
+}
 @media only screen and (max-width: 780px) {
   .chessboard-container {
     width: 70vw;

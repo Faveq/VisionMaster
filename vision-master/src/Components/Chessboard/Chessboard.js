@@ -17,7 +17,7 @@ const Chessboard = () => {
           String.fromCharCode(97 + row) + (8 - column) === randomizedSquare;
         squares.push(
           <Square
-            key={column + "" + row}
+          key={column + "" + row}
             className={
               (colorHandler % 2 !== 0 ? "white-square" : "black-square") +
               (isRandomizedSquare && gameType === "practice" ? " randomized-square" : "")
