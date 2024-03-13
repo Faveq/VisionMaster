@@ -1,9 +1,9 @@
 import React from "react";
-import "../../Styles/RightPanel/Field.css"
+import "../../Styles/Chessboard/Field.css"
 import { useSelector } from "react-redux";
 
 const Field = () => {
   const randomizedSquare = useSelector(state=>state.game.randomizedSquare)
-  return <h1 className="field">{randomizedSquare}</h1>;
+  return <p className="field">{randomizedSquare}</p>;
 };
 export default Field;

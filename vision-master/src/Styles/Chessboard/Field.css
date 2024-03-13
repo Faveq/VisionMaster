@@ -1,0 +1,8 @@
+.field{
+    position: absolute;
+    pointer-events: none;
+    margin: 0px;
+    font-size: 8em;
+    font-weight: 700;
+    color: #7c7b7bb0;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Square from "./Square.js";
 import "../../Styles/Chessboard/Chessboard.css";
 import { useSelector } from "react-redux";
+import Field from "./Field.js";
 
 const Chessboard = () => {
   const game = useSelector(state => state.game)
@@ -35,6 +36,9 @@ const Chessboard = () => {
     return squares;
   };
 
-  return <div className="chessboard">{generateSquares()}</div>;
+  return <div>
+    <div className="chessboard">{generateSquares()}
+    <Field/></div>
+    </div>
 };
 export default Chessboard;
