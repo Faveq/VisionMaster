@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/VisionMaster/static/css/main.640de1e7.css",
+    "main.js": "/VisionMaster/static/js/main.2ba7d3d4.js",
+    "static/js/453.61aa0fef.chunk.js": "/VisionMaster/static/js/453.61aa0fef.chunk.js",
+    "index.html": "/VisionMaster/index.html",
+    "main.640de1e7.css.map": "/VisionMaster/static/css/main.640de1e7.css.map",
+    "main.2ba7d3d4.js.map": "/VisionMaster/static/js/main.2ba7d3d4.js.map",
+    "453.61aa0fef.chunk.js.map": "/VisionMaster/static/js/453.61aa0fef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.640de1e7.css",
+    "static/js/main.2ba7d3d4.js"
+  ]
+}

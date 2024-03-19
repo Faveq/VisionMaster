@@ -1,0 +1,8 @@
+game type:
+0 - endless practice
+1 - time limit
+
+MainSite:
+    -GameHandler
+    -Chessboard
+    -RightPanel
