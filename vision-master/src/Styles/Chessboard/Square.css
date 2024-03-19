@@ -16,7 +16,6 @@
 }
 .square:hover{
     cursor: pointer;
-    scale:  1.1;
 }
 .black-square{
     background-color: var(--black-square);

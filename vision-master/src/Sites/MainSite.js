@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import GameResult from "../Components/GameResults.js";
 
 const MainSite = () => {
-  const gamectrl = GameController()
+  GameController()
   return (
     <div className="main-site-container">
       <div className="chessboard-container">

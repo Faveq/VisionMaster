@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap');
 html, body{
     margin: 0px;
-    overflow: hidden;
+    overflow:hidden;
     background-color: #2e2e2e !important;
+    font-family: "Wix Madefor Text", sans-serif !important;
 }
+@media only screen and (max-height: 670px) {
+    html {
+      overflow-y: scroll;
+    }
+  }
+  

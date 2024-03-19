@@ -8,8 +8,9 @@ const RightPanel = () => {
 
   return <div className="right-panel">
     <Score/>
-    <GameTypeSettings/>
     <Time/>
+    <br/>
+    <GameTypeSettings/>
   </div>;
 };
 export default RightPanel;

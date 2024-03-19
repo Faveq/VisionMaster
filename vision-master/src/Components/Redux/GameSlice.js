@@ -13,9 +13,11 @@ const initialState = {
   points: 0,
   highScore: 0,
   availableMistakes: 3,
+  defaultTime: 0, //seconds
   time: 0, // seconds
   isRunning: false,
   isGameFinished: false,
+  showCoordinates: true,
   randomizedSquare:
     String.fromCharCode(Math.floor(Math.random() * (104 - 97 + 1)) + 97) +
     +(Math.floor(Math.random() * 8) + 1),
@@ -30,28 +32,32 @@ export const gameSlice = createSlice({
       state.gameType = gameTypes[action.payload];
       switch (state.gameType) {
         case gameTypes.oneMinute:
-          state.time = 3;
+          state.defaultTime = 60
           break;
         case gameTypes.threeMinutes:
-          state.time = 180;
+          state.defaultTime = 180
           break;
         case gameTypes.fiveMinutes:
-          state.time = 300;
+          state.defaultTime = 300
           break;
         default:
-          state.time = 0;
+          state.defaultTime = 0
       }
+      state.time = state.defaultTime
     },
 
     addPoint: (state) => {
       state.points++;
     },
     updateHighScore: (state, action)=>{
-      console.log("update")
       state.highScore = action.payload
     },
     startStop: (state) => {
       state.isRunning = !state.isRunning;
+    },
+
+    changeCoordinatesVisibility: (state)=>{
+      state.showCoordinates = !state.showCoordinates
     },
 
     tick: (state) => {
@@ -67,7 +73,7 @@ export const gameSlice = createSlice({
       state.isGameFinished = false
       state.points = 0;
       state.availableMistakes = 3;
-      state.time = 60;
+      state.time = state.defaultTime;
       if (state.isRunning) {
         gameSlice.caseReducers.startStop(state);
       }
@@ -120,6 +126,7 @@ export const {
   removeOneMistake,
   handleClick,
   tick,
-  updateHighScore
+  updateHighScore,
+  changeCoordinatesVisibility
 } = gameSlice.actions;
 export default gameSlice.reducer;

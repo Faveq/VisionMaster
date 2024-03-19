@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetGame} from "./Redux/GameSlice";
+import { useCookies } from "react-cookie";
+import { resetGame } from "./Redux/GameSlice";
 /* global bootstrap */
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,11 +9,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const GameResult = () => {
   const game = useSelector((state) => state.game);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isGameFinished = game.isGameFinished;
   const score = game.points;
-  const highScore = game.highScore
-  const [newHighScoreSet, setNewHighScoreSet] = useState(false);
+  const gameType = game.gameType;
+  const highScore = game.highScore;
+  const [cookies, setCookie] = useCookies(["highScoresCookie"]);
+  const [oldHighScore, setOldHighScore] = useState();
+
+  useEffect(() => {
+    if (gameType !== "practice" && gameType !== "endless" && gameType) {
+      setOldHighScore(cookies.highScoresCookie[gameType]);
+    }
+  }, [gameType]);
 
   useEffect(() => {
     if (isGameFinished) {
@@ -20,13 +29,9 @@ const GameResult = () => {
     }
   }, [isGameFinished]);
 
-  useEffect(() => {
-    setNewHighScoreSet(true)
-  }, [highScore]);
-
   return (
     <div
-    className="modal fade"
+      className="modal fade"
       id="summaryModal"
       tabIndex="-1"
       aria-labelledby="summaryModalLabel"
@@ -41,9 +46,26 @@ const GameResult = () => {
               Summary
             </h1>
           </div>
-            <div className="modal-body"><h2 className={!newHighScoreSet ? "hide" : ""}>New record!!!</h2>Score: {score}<br/>Record:  {highScore}</div>
+          {score > oldHighScore ? (
+            <div className="modal-body">
+              <h2>New record!!!</h2>
+              <h5>Score: {score}</h5>
+              <h6>Record: {highScore}</h6>
+            </div>
+          ) : (
+            <div className="modal-body">
+              <h5>Score: {score}</h5>
+              <h6>Record: {highScore}</h6>
+            </div>
+          )}
+
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary" onClick={()=>dispatch(resetGame())} data-bs-dismiss="modal">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => dispatch(resetGame())}
+              data-bs-dismiss="modal"
+            >
               Again
             </button>
           </div>
