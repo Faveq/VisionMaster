@@ -5,13 +5,13 @@
   align-items: center;
   width: 100vw;
 }
-.chessboard-container {  
+.chessboard-container { 
   width: 50vw;
   min-width: max-content;
 }
 .right-panel-container {
   width: 25vw;
-  
+
 }
 .hide {
   visibility: hidden;
@@ -24,14 +24,27 @@
   }
   .chessboard-container {
     height: 75vh;
+    position: relative;
   }
 
   .right-panel-container{
     width: 100vw;
+    position: relative;
     height: 30vh;
   }
   .time, .score-h1{
     font-size: 2.3em !important;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .main-site-container {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+  .chessboard-container{
+    width: 100vw !important;
   }
 }
 

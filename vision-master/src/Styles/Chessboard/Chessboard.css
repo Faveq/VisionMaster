@@ -1,8 +1,6 @@
 .chessboard {
   aspect-ratio: 1/1;
-  
   max-height: 90vh;
-  min-height: 75vh;
   display: flex;
   flex-wrap: wrap;
   margin: 0%;
@@ -12,9 +10,14 @@
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 820px) {
+.chessboard{
+  height: 100%;
+}
+}
 
 @media only screen and (max-width: 1080px) {
   .chessboard{
-    width: 75vh;
+
   }
 }

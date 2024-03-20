@@ -10,17 +10,17 @@ const AvailableMistakes = () => {
   return (
     <div className={gameType === 'endless' || gameType === 'practice' ? "hide" : "mistakes-number-div"}>
       <img
-        src="Images/mistake-cross.png"
+        src={process.env.PUBLIC_URL + '/Images/mistake-cross.png'}
         className={(availableMistakes < 3 ? "used" : "") + " mistake-cross"}
         alt="mistake-cross"
       />
       <img
-        src="Images/mistake-cross.png"
+        src={process.env.PUBLIC_URL + '/Images/mistake-cross.png'}
         className={(availableMistakes < 2 ? "used" : "") + " mistake-cross"}
         alt="mistake-cross"
       />
       <img
-        src="Images/mistake-cross.png"
+        src={process.env.PUBLIC_URL + '/Images/mistake-cross.png'}
         className={(availableMistakes === 0 ? "used" : "") + " mistake-cross"}
         alt="mistake-cross"
       />
